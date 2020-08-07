@@ -14,6 +14,7 @@ def get_indices_of_item_weights(weights, length, limit):
         # because w1>w2, so w1 >= limit/2
         # breakpoint()
         w2 = limit - w1
+        # execute the following only if w2 is positive
         if w2 > 0:
             try:
                 # pythonlist.index(value, start, end)
@@ -24,8 +25,7 @@ def get_indices_of_item_weights(weights, length, limit):
                     idx2 = weights.index(w2)        
                 if (w1, w2) not in cache:
                     cache[(w1, w2)] = [idx1, idx2]   
-                    
-                print(idx1, idx2)             
+                            
             except:
                 pass    
         

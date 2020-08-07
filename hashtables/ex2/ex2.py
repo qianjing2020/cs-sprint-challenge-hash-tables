@@ -8,22 +8,19 @@ class Ticket:
         self.source = source
         self.destination = destination
 
-
-# use a dictionary to store ticket, as cache[source]=destination
-cache = {}
-
 def reconstruct_trip(tickets, length):
+    # use a dictionary to store ticket, as cache[source]=destination
+    x = {}
     # store ticket in cache, O(n)
     for t in tickets:
-        cache[t.source] = t.destination
+        x[t.source] = t.destination
 
     # initiate route
-    route = cache[None]
-    # while not reach the last destination None, O(1)
-    while route[-1] is not None:
-        # loop through cache, O(n)
-        for source, destination in cache.items():
-            if source == route[-1]:
-                route.append(destination)
-
+    route = []
+    route.append(x["NONE"])
+    # while not reach the last destination None
+    while route[-1] != "NONE":
+        # find x using last item route as key, and append it
+        route.append(x[route[-1]])
+    
     return route

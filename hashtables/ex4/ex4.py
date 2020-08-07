@@ -1,23 +1,25 @@
 """ex4.
-Find a positive numbers if a positive number is followed by a negative number.
+Find a positive numbers if a positive number has a corresponding  negative number.
 Return all such positive numbers in a list.
 
 """
-def has_negatives(a):
+def has_negatives(a):    
     # create a dictionary with key value as such:
-    # cache[positive number] = it's next number
+    # cache[negative number] = its positive twin
     cache = {}
-    for idx, number in enumerate(a):
-        if number > 0:
-            cache[number] = a[idx+1]
+
+    for number in a:
+        if number < 0:
+            if number not in cache:
+                cache[number] = -number
     
     # init result
     result = []
     # iterate over cache
-    for item in cache:
+    for value in cache.values():
         # if value is negative, put the key to result
-        if item.values() < 0: 
-            result.append(item.keys())        
+        if value in a: 
+            result.append(value)        
 
     return result
 
